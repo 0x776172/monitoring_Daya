@@ -1,0 +1,121 @@
+// ignore_for_file: prefer_const_constructors
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:monitoring_energi/data/get_data.dart';
+import 'package:monitoring_energi/screen/ruangan_screen.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  List<GetData> data1 = <GetData>[];
+  List<GetData> data2 = <GetData>[];
+  final DatabaseReference _db = FirebaseDatabase.instance.ref();
+  late TabController _controller;
+  @override
+  void initState() {
+    super.initState();
+    _controller = TabController(length: 2, vsync: this);
+    _getData1();
+    _getData2();
+    initializeDateFormatting();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
+  void _getData1() {
+    _db.child('ruangan1').onValue.listen((event) {
+      setState(() {
+        for (var snapshot in event.snapshot.children) {
+          var values =
+              Map<String, dynamic>.from(jsonDecode(jsonEncode(snapshot.value)));
+          print('data 1 =>>>>> $values');
+          var rawDate =
+              DateTime.fromMillisecondsSinceEpoch(values['Timestamp']);
+          var dt = DateFormat.Hms().format(rawDate);
+          print(dt);
+          GetData result = GetData(
+            id: snapshot.key!,
+            daya: values['Value'],
+            timestamp: dt,
+          );
+          data1.add(result);
+        }
+      });
+    });
+  }
+
+  void _getData2() {
+    _db.child('ruangan2').onValue.listen((event) {
+      setState(() {
+        for (var snapshot in event.snapshot.children) {
+          var values =
+              Map<String, dynamic>.from(jsonDecode(jsonEncode(snapshot.value)));
+
+          GetData result = GetData(
+              id: snapshot.key!,
+              daya: values['Value'],
+              timestamp: values['Timestamp']);
+          data2.add(result);
+        }
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: const Text('Monitoring Daya'),
+        bottom: TabBar(
+          controller: _controller,
+          indicatorSize: TabBarIndicatorSize.label,
+          tabs: const [
+            Tab(child: Text('Ruangan 1')),
+            Tab(child: Text('Ruangan 2')),
+          ],
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.info_outline),
+            tooltip: "About",
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => const AlertDialog(
+                  title: Text(
+                    "About Us",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  content: Text("test"),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+      body: TabBarView(
+        controller: _controller,
+        children: [
+          ScreenTab(data: data1),
+          ScreenTab(data: data2),
+        ],
+      ),
+    );
+  }
+}

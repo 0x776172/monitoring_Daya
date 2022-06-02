@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "741923614002",
+    "firebase_url": "https://monitoring-daya-ppns-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "monitoring-daya-ppns",
+    "storage_bucket": "monitoring-daya-ppns.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741923614002:android:a04624c1778eed6adcfb2b",
+        "android_client_info": {
+          "package_name": "com.example.monitoring_energi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741923614002-t4rpnken6nva31e9dtspa9qti5fdi4uq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKWVAmLISpG_S954HFARZOoEbXBM7aWAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741923614002-t4rpnken6nva31e9dtspa9qti5fdi4uq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
