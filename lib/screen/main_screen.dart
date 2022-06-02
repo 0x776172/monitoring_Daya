@@ -93,45 +93,47 @@ class _MyHomePageState extends State<MyHomePage>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const Text('Monitoring Daya'),
-        bottom: TabBar(
-          controller: _controller,
-          indicatorSize: TabBarIndicatorSize.label,
-          tabs: const [
-            Tab(child: Text('Ruangan 1')),
-            Tab(child: Text('Ruangan 2')),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          title: const Text('Monitoring Daya'),
+          bottom: TabBar(
+            controller: _controller,
+            indicatorSize: TabBarIndicatorSize.label,
+            tabs: const [
+              Tab(child: Text('Ruangan 1')),
+              Tab(child: Text('Ruangan 2')),
+            ],
+          ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.info_outline),
+              tooltip: "About",
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) => const AlertDialog(
+                    title: Text(
+                      "About Us",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    content: Text("test"),
+                  ),
+                );
+              },
+            ),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.info_outline),
-            tooltip: "About",
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) => const AlertDialog(
-                  title: Text(
-                    "About Us",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  content: Text("test"),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-      body: TabBarView(
-        controller: _controller,
-        children: [
-          ScreenTab(data: data1),
-          ScreenTab(data: data2),
-        ],
+        body: TabBarView(
+          controller: _controller,
+          children: [
+            ScreenTab(data: data1),
+            ScreenTab(data: data2),
+          ],
+        ),
       ),
     );
   }
