@@ -88,17 +88,18 @@ class _ScreenTabState extends State<ScreenTab>
                         ScatterSeries<GetData, String>(
                             name: 'Daya',
                             // Bind data source
-                            dataSource: widget.data.isNotEmpty
-                                ? widget.data
-                                : [
-                                    GetData(
-                                        id: "id",
-                                        daya: 0,
-                                        timestamp:
-                                            DateTime.fromMillisecondsSinceEpoch(
-                                                    0)
-                                                .toString()),
-                                  ],
+                            dataSource: widget.data,
+                            // widget.data.isNotEmpty
+                            //     ? widget.data
+                            //     : [
+                            //         GetData(
+                            //             id: "id",
+                            //             daya: 0,
+                            //             timestamp:
+                            //                 DateTime.fromMillisecondsSinceEpoch(
+                            //                         0)
+                            //                     .toString()),
+                            //       ],
                             xValueMapper: (GetData dataResult, _) =>
                                 dataResult.timestamp,
                             yValueMapper: (GetData dataResult, _) =>

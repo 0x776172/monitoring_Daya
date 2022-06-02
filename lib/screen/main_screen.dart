@@ -48,8 +48,15 @@ class _MyHomePageState extends State<MyHomePage>
           print(dt);
           GetData result = GetData(
             id: snapshot.key!,
-            daya: values['Value'],
             timestamp: dt,
+            daya: values['Daya'],
+            kwh: values['kwh'],
+            tegR: values['tegR'],
+            tegS: values['tegS'],
+            tegT: values['tegT'],
+            arusR: values['arusR'],
+            arusS: values['arusS'],
+            arusT: values['arusT'],
           );
           data1.add(result);
         }
@@ -63,11 +70,21 @@ class _MyHomePageState extends State<MyHomePage>
         for (var snapshot in event.snapshot.children) {
           var values =
               Map<String, dynamic>.from(jsonDecode(jsonEncode(snapshot.value)));
-
+          var rawDate =
+              DateTime.fromMillisecondsSinceEpoch(values['Timestamp']);
+          var dt = DateFormat.Hms().format(rawDate);
           GetData result = GetData(
-              id: snapshot.key!,
-              daya: values['Value'],
-              timestamp: values['Timestamp']);
+            id: snapshot.key!,
+            timestamp: dt,
+            daya: values['Daya'],
+            kwh: values['kwh'],
+            tegR: values['tegR'],
+            tegS: values['tegS'],
+            tegT: values['tegT'],
+            arusR: values['arusR'],
+            arusS: values['arusS'],
+            arusT: values['arusT'],
+          );
           data2.add(result);
         }
       });
