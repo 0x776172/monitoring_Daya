@@ -1,6 +1,6 @@
 # monitoring_energi
 
-A new Flutter project.
+A Monitoring Application with Flutter.
 
 ## Getting Started
 
