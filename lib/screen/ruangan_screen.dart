@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monitoring_energi/data/get_data.dart';
+import 'package:monitoring_energi/screen/current_chart.dart';
 import 'package:monitoring_energi/screen/power_chart.dart';
 import 'package:monitoring_energi/screen/volt_chart.dart';
 
@@ -60,6 +61,7 @@ class _ScreenTabState extends State<ScreenTab>
             ),
             PowerChart(data: widget.data),
             VoltChart(data: widget.data),
+            CurrentChart(data: widget.data),
           ],
         ),
       ],
