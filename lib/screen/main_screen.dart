@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage>
           GetData result = GetData(
             id: snapshot.key!,
             timestamp: dt,
-            daya: values['Daya'],
+            daya: values['Value'],
             kwh: values['kwh'],
             tegR: values['tegR'],
             tegS: values['tegS'],
