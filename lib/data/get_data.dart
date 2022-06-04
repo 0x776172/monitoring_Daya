@@ -1,6 +1,6 @@
 class GetData {
   String id;
-  String timestamp;
+  dynamic timestamp;
   dynamic daya;
   dynamic tegS;
   dynamic tegT;

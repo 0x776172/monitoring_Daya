@@ -24,15 +24,17 @@ class _CurrentChartState extends State<CurrentChart> {
                 child: SizedBox(
                     width: 30, height: 30, child: CircularProgressIndicator()))
             : SfCartesianChart(
-                zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
+                title: ChartTitle(
+                    text: 'Current', textStyle: const TextStyle(fontSize: 10)),
+                // zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
                 enableAxisAnimation: true,
                 tooltipBehavior: TooltipBehavior(enable: true, duration: 1.0),
-                primaryXAxis: CategoryAxis(
+                primaryXAxis: DateTimeCategoryAxis(
                   labelIntersectAction: AxisLabelIntersectAction.multipleRows,
                   maximumLabels: 5,
                 ),
-                series: <ScatterSeries<GetData, String>>[
-                  ScatterSeries<GetData, String>(
+                series: <ScatterSeries<GetData, DateTime>>[
+                  ScatterSeries<GetData, DateTime>(
                       name: 'Ir',
                       // Bind data source
                       dataSource: widget.data,
@@ -40,7 +42,7 @@ class _CurrentChartState extends State<CurrentChart> {
                           dataResult.timestamp,
                       yValueMapper: (GetData dataResult, _) =>
                           dataResult.arusR),
-                  ScatterSeries<GetData, String>(
+                  ScatterSeries<GetData, DateTime>(
                       name: 'Is',
                       // Bind data source
                       dataSource: widget.data,
@@ -48,7 +50,7 @@ class _CurrentChartState extends State<CurrentChart> {
                           dataResult.timestamp,
                       yValueMapper: (GetData dataResult, _) =>
                           dataResult.arusS),
-                  ScatterSeries<GetData, String>(
+                  ScatterSeries<GetData, DateTime>(
                       name: 'It',
                       // Bind data source
                       dataSource: widget.data,

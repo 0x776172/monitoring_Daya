@@ -33,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage>
   void dispose() {
     super.dispose();
     _controller.dispose();
+    data1.clear();
   }
 
   void _getData1() {
@@ -44,11 +45,11 @@ class _MyHomePageState extends State<MyHomePage>
           print('data 1 =>>>>> $values');
           var rawDate =
               DateTime.fromMillisecondsSinceEpoch(values['Timestamp']);
-          var dt = DateFormat.Hms().format(rawDate);
-          print(dt);
+          // var dt = DateFormat.Hms().format(rawDate);
+          print(rawDate);
           GetData result = GetData(
             id: snapshot.key!,
-            timestamp: dt,
+            timestamp: rawDate,
             daya: values['Value'],
             kwh: values['kwh'],
             tegR: values['tegR'],
@@ -120,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage>
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    content: Text("test"),
+                    content: Text("test\nbrotherku"),
                   ),
                 );
               },

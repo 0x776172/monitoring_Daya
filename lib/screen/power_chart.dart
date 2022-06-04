@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:monitoring_energi/data/get_data.dart';
 
@@ -24,22 +25,32 @@ class _PowerChartState extends State<PowerChart> {
                 child: SizedBox(
                     width: 30, height: 30, child: CircularProgressIndicator()))
             : SfCartesianChart(
-                zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
+                title: ChartTitle(
+                    text: 'Power', textStyle: const TextStyle(fontSize: 10)),
+                zoomPanBehavior: ZoomPanBehavior(
+                  enablePinching: true,
+                  enablePanning: true,
+                ),
                 enableAxisAnimation: true,
                 tooltipBehavior: TooltipBehavior(enable: true, duration: 1.0),
-                primaryXAxis: CategoryAxis(
+                primaryXAxis: DateTimeCategoryAxis(
+                  dateFormat: DateFormat('''dd/MM/yy\nHH:mm'''),
                   labelIntersectAction: AxisLabelIntersectAction.multipleRows,
-                  maximumLabels: 5,
+                  maximumLabels: 3,
+                  // visibleMinimum: DateTime.parse("2022-05-31"),
+                  // visibleMaximum: DateTime.parse("2022-05-31"),
                 ),
-                series: <ScatterSeries<GetData, String>>[
-                  ScatterSeries<GetData, String>(
+                primaryYAxis: NumericAxis(labelFormat: '{value} W'),
+                series: <LineSeries<GetData, DateTime>>[
+                  LineSeries<GetData, DateTime>(
+                      markerSettings: const MarkerSettings(isVisible: true),
                       name: 'Daya',
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
                           dataResult.timestamp,
                       yValueMapper: (GetData dataResult, _) => dataResult.daya),
-                  ScatterSeries<GetData, String>(
+                  LineSeries<GetData, DateTime>(
                       name: 'kWh',
                       // Bind data source
                       dataSource: widget.data,

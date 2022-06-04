@@ -24,29 +24,31 @@ class _VoltChartState extends State<VoltChart> {
                 child: SizedBox(
                     width: 30, height: 30, child: CircularProgressIndicator()))
             : SfCartesianChart(
-                zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
+                title: ChartTitle(
+                    text: "Voltage", textStyle: const TextStyle(fontSize: 10)),
+                // zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
                 enableAxisAnimation: true,
                 tooltipBehavior: TooltipBehavior(enable: true, duration: 1.0),
-                primaryXAxis: CategoryAxis(
+                primaryXAxis: DateTimeCategoryAxis(
                   labelIntersectAction: AxisLabelIntersectAction.multipleRows,
                   maximumLabels: 5,
                 ),
-                series: <ScatterSeries<GetData, String>>[
-                  ScatterSeries<GetData, String>(
+                series: <ScatterSeries<GetData, DateTime>>[
+                  ScatterSeries<GetData, DateTime>(
                       name: 'Vr',
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
                           dataResult.timestamp,
                       yValueMapper: (GetData dataResult, _) => dataResult.tegR),
-                  ScatterSeries<GetData, String>(
+                  ScatterSeries<GetData, DateTime>(
                       name: 'Vs',
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
                           dataResult.timestamp,
                       yValueMapper: (GetData dataResult, _) => dataResult.tegS),
-                  ScatterSeries<GetData, String>(
+                  ScatterSeries<GetData, DateTime>(
                       name: 'Vt',
                       // Bind data source
                       dataSource: widget.data,
