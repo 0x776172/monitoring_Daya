@@ -28,39 +28,52 @@ class _CurrentChartState extends State<CurrentChart> {
                 legend: Legend(isVisible: true),
                 title: ChartTitle(
                     text: 'Current', textStyle: const TextStyle(fontSize: 10)),
-                // zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
+                zoomPanBehavior: ZoomPanBehavior(
+                  enablePanning: true,
+                  enablePinching: true,
+                ),
                 enableAxisAnimation: true,
                 tooltipBehavior: TooltipBehavior(enable: true, duration: 1.0),
                 primaryXAxis: DateTimeCategoryAxis(
+                  maximumLabels: 5,
+                  visibleMaximum: widget.data.isNotEmpty
+                      ? widget.data[widget.data.length - 1].timestamp
+                      : null,
+                  visibleMinimum: widget.data.length > 15
+                      ? widget.data[widget.data.length - 15].timestamp
+                      : null,
                   dateFormat: DateFormat('''dd/MM/yy\nHH:mm'''),
                   labelIntersectAction: AxisLabelIntersectAction.multipleRows,
-                  maximumLabels: 5,
                 ),
-                series: <ScatterSeries<GetData, DateTime>>[
-                  ScatterSeries<GetData, DateTime>(
+                primaryYAxis: NumericAxis(labelFormat: '{value} A'),
+                series: <LineSeries<GetData, DateTime>>[
+                  LineSeries<GetData, DateTime>(
                       markerSettings: const MarkerSettings(isVisible: true),
                       name: 'Ir',
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
                           dataResult.timestamp,
-                      yValueMapper: (GetData dataResult, _) => dataResult.arus),
-                  ScatterSeries<GetData, DateTime>(
+                      yValueMapper: (GetData dataResult, _) =>
+                          dataResult.arusR),
+                  LineSeries<GetData, DateTime>(
                       markerSettings: const MarkerSettings(isVisible: true),
                       name: 'Is',
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
                           dataResult.timestamp,
-                      yValueMapper: (GetData dataResult, _) => dataResult.arus),
-                  ScatterSeries<GetData, DateTime>(
+                      yValueMapper: (GetData dataResult, _) =>
+                          dataResult.arusS),
+                  LineSeries<GetData, DateTime>(
                       markerSettings: const MarkerSettings(isVisible: true),
                       name: 'It',
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
                           dataResult.timestamp,
-                      yValueMapper: (GetData dataResult, _) => dataResult.arus),
+                      yValueMapper: (GetData dataResult, _) =>
+                          dataResult.arusT),
                 ],
               ),
       ),

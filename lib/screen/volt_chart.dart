@@ -25,41 +25,52 @@ class _VoltChartState extends State<VoltChart> {
                 child: SizedBox(
                     width: 30, height: 30, child: CircularProgressIndicator()))
             : SfCartesianChart(
+                legend: Legend(isVisible: true),
                 title: ChartTitle(
                     text: "Voltage", textStyle: const TextStyle(fontSize: 10)),
-                // zoomPanBehavior: ZoomPanBehavior(enablePanning: true),
+                zoomPanBehavior: ZoomPanBehavior(
+                  enablePanning: true,
+                  enablePinching: true,
+                ),
                 enableAxisAnimation: true,
                 tooltipBehavior: TooltipBehavior(enable: true, duration: 1.0),
                 primaryXAxis: DateTimeCategoryAxis(
+                  maximumLabels: 5,
                   dateFormat: DateFormat('''dd/MM/yy\nHH:mm'''),
                   labelIntersectAction: AxisLabelIntersectAction.multipleRows,
-                  maximumLabels: 5,
+                  visibleMaximum: widget.data.isNotEmpty
+                      ? widget.data[widget.data.length - 1].timestamp
+                      : null,
+                  visibleMinimum: widget.data.length > 15
+                      ? widget.data[widget.data.length - 15].timestamp
+                      : null,
                 ),
-                series: <ScatterSeries<GetData, DateTime>>[
-                  ScatterSeries<GetData, DateTime>(
+                primaryYAxis: NumericAxis(labelFormat: '{value} V'),
+                series: <LineSeries<GetData, DateTime>>[
+                  LineSeries<GetData, DateTime>(
                       markerSettings: const MarkerSettings(isVisible: true),
                       name: 'Vr',
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
                           dataResult.timestamp,
-                      yValueMapper: (GetData dataResult, _) => dataResult.teg),
-                  ScatterSeries<GetData, DateTime>(
+                      yValueMapper: (GetData dataResult, _) => dataResult.tegR),
+                  LineSeries<GetData, DateTime>(
                       name: 'Vs',
                       markerSettings: const MarkerSettings(isVisible: true),
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
                           dataResult.timestamp,
-                      yValueMapper: (GetData dataResult, _) => dataResult.teg),
-                  ScatterSeries<GetData, DateTime>(
+                      yValueMapper: (GetData dataResult, _) => dataResult.tegS),
+                  LineSeries<GetData, DateTime>(
                       markerSettings: const MarkerSettings(isVisible: true),
                       name: 'Vt',
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
                           dataResult.timestamp,
-                      yValueMapper: (GetData dataResult, _) => dataResult.teg),
+                      yValueMapper: (GetData dataResult, _) => dataResult.tegT),
                 ],
               ),
       ),

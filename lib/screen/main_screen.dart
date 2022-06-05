@@ -54,12 +54,12 @@ class _MyHomePageState extends State<MyHomePage>
             timestamp: rawDate,
             daya: values['Daya'] * 0.01,
             kwh: values['kwh'],
-            teg: values['teg'] * 0.1,
-            // tegS: values['tegS'],
-            // tegT: values['tegT'],
-            arus: values['arus'] * 0.001,
-            // arusS: values['arusS'],
-            // arusT: values['arusT'],
+            tegR: values['teg'] * 0.1,
+            tegS: values['tegS'],
+            tegT: values['tegT'],
+            arusR: values['arus'] * 0.001,
+            arusS: values['arusS'],
+            arusT: values['arusT'],
           );
           data1.add(result);
         }
@@ -82,12 +82,12 @@ class _MyHomePageState extends State<MyHomePage>
             timestamp: dt,
             daya: values['Daya'],
             kwh: values['kwh'],
-            teg: values['teg'],
-            // tegS: values['tegS'],
-            // tegT: values['tegT'],
-            arus: values['arus'],
-            // arusS: values['arusS'],
-            // arusT: values['arusT'],
+            tegR: values['teg'],
+            tegS: values['tegS'],
+            tegT: values['tegT'],
+            arusR: values['arus'],
+            arusS: values['arusS'],
+            arusT: values['arusT'],
           );
           data2.add(result);
         }

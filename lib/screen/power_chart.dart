@@ -25,6 +25,7 @@ class _PowerChartState extends State<PowerChart> {
                 child: SizedBox(
                     width: 30, height: 30, child: CircularProgressIndicator()))
             : SfCartesianChart(
+                legend: Legend(isVisible: true),
                 title: ChartTitle(
                     text: 'Power', textStyle: const TextStyle(fontSize: 10)),
                 zoomPanBehavior: ZoomPanBehavior(
@@ -34,9 +35,15 @@ class _PowerChartState extends State<PowerChart> {
                 enableAxisAnimation: true,
                 tooltipBehavior: TooltipBehavior(enable: true, duration: 1.0),
                 primaryXAxis: DateTimeCategoryAxis(
+                  maximumLabels: 5,
+                  visibleMaximum: widget.data.isNotEmpty
+                      ? widget.data[widget.data.length - 1].timestamp
+                      : null,
+                  visibleMinimum: widget.data.length > 15
+                      ? widget.data[widget.data.length - 15].timestamp
+                      : null,
                   dateFormat: DateFormat('''dd/MM/yy\nHH:mm'''),
                   labelIntersectAction: AxisLabelIntersectAction.multipleRows,
-                  maximumLabels: 3,
                   // visibleMinimum: DateTime.parse("2022-05-31"),
                   // visibleMaximum: DateTime.parse("2022-05-31"),
                 ),

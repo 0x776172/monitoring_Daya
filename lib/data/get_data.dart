@@ -2,12 +2,12 @@ class GetData {
   String id;
   dynamic timestamp;
   dynamic daya;
-  dynamic teg;
-  // dynamic tegT;
-  // dynamic tegR;
-  dynamic arus;
-  // dynamic arusR;
-  // dynamic arusT;
+  dynamic tegS;
+  dynamic tegT;
+  dynamic tegR;
+  dynamic arusS;
+  dynamic arusR;
+  dynamic arusT;
   dynamic kwh;
 
   GetData({
@@ -15,11 +15,11 @@ class GetData {
     required this.timestamp,
     required this.daya,
     required this.kwh,
-    required this.teg,
-    // required this.tegS,
-    // required this.tegT,
-    required this.arus,
-    // required this.arusS,
-    // required this.arusT,
+    required this.tegR,
+    required this.tegS,
+    required this.tegT,
+    required this.arusR,
+    required this.arusS,
+    required this.arusT,
   });
 }
