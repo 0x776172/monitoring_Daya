@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monitoring_energi/data/get_data.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:intl/intl.dart';
 
 class VoltChart extends StatefulWidget {
   final List<GetData> data;
@@ -30,31 +31,35 @@ class _VoltChartState extends State<VoltChart> {
                 enableAxisAnimation: true,
                 tooltipBehavior: TooltipBehavior(enable: true, duration: 1.0),
                 primaryXAxis: DateTimeCategoryAxis(
+                  dateFormat: DateFormat('''dd/MM/yy\nHH:mm'''),
                   labelIntersectAction: AxisLabelIntersectAction.multipleRows,
                   maximumLabels: 5,
                 ),
                 series: <ScatterSeries<GetData, DateTime>>[
                   ScatterSeries<GetData, DateTime>(
+                      markerSettings: const MarkerSettings(isVisible: true),
                       name: 'Vr',
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
                           dataResult.timestamp,
-                      yValueMapper: (GetData dataResult, _) => dataResult.tegR),
+                      yValueMapper: (GetData dataResult, _) => dataResult.teg),
                   ScatterSeries<GetData, DateTime>(
                       name: 'Vs',
+                      markerSettings: const MarkerSettings(isVisible: true),
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
                           dataResult.timestamp,
-                      yValueMapper: (GetData dataResult, _) => dataResult.tegS),
+                      yValueMapper: (GetData dataResult, _) => dataResult.teg),
                   ScatterSeries<GetData, DateTime>(
+                      markerSettings: const MarkerSettings(isVisible: true),
                       name: 'Vt',
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
                           dataResult.timestamp,
-                      yValueMapper: (GetData dataResult, _) => dataResult.tegT),
+                      yValueMapper: (GetData dataResult, _) => dataResult.teg),
                 ],
               ),
       ),

@@ -51,6 +51,7 @@ class _PowerChartState extends State<PowerChart> {
                           dataResult.timestamp,
                       yValueMapper: (GetData dataResult, _) => dataResult.daya),
                   LineSeries<GetData, DateTime>(
+                      markerSettings: const MarkerSettings(isVisible: true),
                       name: 'kWh',
                       // Bind data source
                       dataSource: widget.data,

@@ -33,31 +33,33 @@ class _MyHomePageState extends State<MyHomePage>
   void dispose() {
     super.dispose();
     _controller.dispose();
-    data1.clear();
+    // data1.clear();
+    // data2.clear();
   }
 
   void _getData1() {
     _db.child('ruangan1').onValue.listen((event) {
+      data1.clear();
       setState(() {
         for (var snapshot in event.snapshot.children) {
           var values =
               Map<String, dynamic>.from(jsonDecode(jsonEncode(snapshot.value)));
-          print('data 1 =>>>>> $values');
+          // print('data 1 =>>>>> $values');
           var rawDate =
               DateTime.fromMillisecondsSinceEpoch(values['Timestamp']);
           // var dt = DateFormat.Hms().format(rawDate);
-          print(rawDate);
+          // print(rawDate);
           GetData result = GetData(
             id: snapshot.key!,
             timestamp: rawDate,
-            daya: values['Value'],
+            daya: values['Daya'] * 0.01,
             kwh: values['kwh'],
-            tegR: values['tegR'],
-            tegS: values['tegS'],
-            tegT: values['tegT'],
-            arusR: values['arusR'],
-            arusS: values['arusS'],
-            arusT: values['arusT'],
+            teg: values['teg'] * 0.1,
+            // tegS: values['tegS'],
+            // tegT: values['tegT'],
+            arus: values['arus'] * 0.001,
+            // arusS: values['arusS'],
+            // arusT: values['arusT'],
           );
           data1.add(result);
         }
@@ -67,6 +69,7 @@ class _MyHomePageState extends State<MyHomePage>
 
   void _getData2() {
     _db.child('ruangan2').onValue.listen((event) {
+      data2.clear();
       setState(() {
         for (var snapshot in event.snapshot.children) {
           var values =
@@ -79,12 +82,12 @@ class _MyHomePageState extends State<MyHomePage>
             timestamp: dt,
             daya: values['Daya'],
             kwh: values['kwh'],
-            tegR: values['tegR'],
-            tegS: values['tegS'],
-            tegT: values['tegT'],
-            arusR: values['arusR'],
-            arusS: values['arusS'],
-            arusT: values['arusT'],
+            teg: values['teg'],
+            // tegS: values['tegS'],
+            // tegT: values['tegT'],
+            arus: values['arus'],
+            // arusS: values['arusS'],
+            // arusT: values['arusT'],
           );
           data2.add(result);
         }
@@ -121,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage>
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    content: Text("test\nbrotherku"),
+                    content: Text("Aplikasi Monitoring Daya 3 Fasa"),
                   ),
                 );
               },
