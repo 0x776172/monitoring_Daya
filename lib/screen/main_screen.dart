@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:monitoring_energi/data/get_data.dart';
 import 'package:monitoring_energi/screen/ruangan_screen.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -52,14 +51,24 @@ class _MyHomePageState extends State<MyHomePage>
           GetData result = GetData(
             id: snapshot.key!,
             timestamp: rawDate,
-            daya: values['Daya'] * 0.01,
-            kwh: values['kwh'],
-            tegR: values['teg'] * 0.1,
-            tegS: values['tegS'],
-            tegT: values['tegT'],
-            arusR: values['arus'] * 0.001,
-            arusS: values['arusS'],
-            arusT: values['arusT'],
+            //daya buat kwh dan kwh buat daya aktif, males ganti cuk
+            daya: values['kwh'],
+            kwh:
+                values['Daya'] != null ? values['Daya'] * 0.01 : values['Daya'],
+            tegR: values['teg'] != null ? values['teg'] * 0.1 : values['teg'],
+            tegS:
+                values['tegS'] != null ? values['tegS'] * 0.1 : values['tegS'],
+            tegT:
+                values['tegT'] != null ? values['tegT'] * 0.1 : values['tegT'],
+            arusR: values['arus'] != null
+                ? values['arus'] * 0.001
+                : values['arus'],
+            arusS: values['arusS'] != null
+                ? values['arusS'] * 0.001
+                : values['arusS'],
+            arusT: values['arusT'] != null
+                ? values['arusT'] * 0.001
+                : values['arusT'],
           );
           data1.add(result);
         }
@@ -76,18 +85,26 @@ class _MyHomePageState extends State<MyHomePage>
               Map<String, dynamic>.from(jsonDecode(jsonEncode(snapshot.value)));
           var rawDate =
               DateTime.fromMillisecondsSinceEpoch(values['Timestamp']);
-          var dt = DateFormat.Hms().format(rawDate);
+          // var dt = DateFormat.Hms().format(rawDate);
           GetData result = GetData(
             id: snapshot.key!,
-            timestamp: dt,
+            timestamp: rawDate,
             daya: values['Daya'],
-            kwh: values['kwh'],
-            tegR: values['teg'],
-            tegS: values['tegS'],
-            tegT: values['tegT'],
-            arusR: values['arus'],
-            arusS: values['arusS'],
-            arusT: values['arusT'],
+            kwh: values['kwh'] != null ? values['kwh'] * 0.01 : values['kwh'],
+            tegR: values['teg'] != null ? values['teg'] * 0.1 : values['teg'],
+            tegS:
+                values['tegS'] != null ? values['tegS'] * 0.1 : values['tegS'],
+            tegT:
+                values['tegT'] != null ? values['tegT'] * 0.1 : values['tegT'],
+            arusR: values['arus'] != null
+                ? values['arus'] * 0.001
+                : values['arus'],
+            arusS: values['arusS'] != null
+                ? values['arusS'] * 0.001
+                : values['arusS'],
+            arusT: values['arusT'] != null
+                ? values['arusT'] * 0.001
+                : values['arusT'],
           );
           data2.add(result);
         }

@@ -53,7 +53,7 @@ class _ScreenTabState extends State<ScreenTab>
                   child: Column(
                     children: [
                       const Text(
-                        'Konsumsi Daya',
+                        'Konsumsi W',
                         style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
