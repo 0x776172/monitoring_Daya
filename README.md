@@ -14,3 +14,9 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+###Details
+This Application made to fullfill my Final Project. 
+In this Application, the monitored data will be displayed using charts. there are 3 datas, which is current, voltage, and power.
+
+This data taken from firebase. firebase receive data from ESP32.
