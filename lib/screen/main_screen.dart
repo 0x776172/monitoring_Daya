@@ -47,10 +47,10 @@ class _MyHomePageState extends State<MyHomePage>
           var rawDate =
               DateTime.fromMillisecondsSinceEpoch(values['Timestamp']);
           // var dt = DateFormat.Hms().format(rawDate);
-          print(rawDate);
+          // print(rawDate);
           GetData result = GetData(
             id: snapshot.key!,
-            timestamp: values['Timestamp'],
+            timestamp: rawDate,
             //daya buat kwh dan kwh buat daya aktif, males ganti cuk
             daya: values['daya'],
             kwh: values['kwh'] != null ? values['kwh'] * 0.01 : values['kwh'],
@@ -85,11 +85,11 @@ class _MyHomePageState extends State<MyHomePage>
               Map<String, dynamic>.from(jsonDecode(jsonEncode(snapshot.value)));
           var rawDate =
               DateTime.fromMillisecondsSinceEpoch(values['Timestamp']);
-          print(rawDate);
+          // print(rawDate);
           // var dt = DateFormat.Hms().format(rawDate);
           GetData result = GetData(
             id: snapshot.key!,
-            timestamp: values['Timestamp'],
+            timestamp: rawDate,
             daya: values['daya'],
             kwh: values['kwh'] != null ? values['kwh'] * 0.01 : values['kwh'],
             tegR:

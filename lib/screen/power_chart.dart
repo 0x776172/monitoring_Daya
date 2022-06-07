@@ -37,16 +37,14 @@ class _PowerChartState extends State<PowerChart> {
                 primaryXAxis: DateTimeCategoryAxis(
                   dateFormat: DateFormat('dd/MM/yy\nHH:mm'),
                   visibleMaximum: widget.data.length > 1
-                      ?
-                      // widget.data[widget.data.length - 1].timestamp
-                      DateTime.fromMillisecondsSinceEpoch(
-                          widget.data[widget.data.length - 1].timestamp)
+                      ? widget.data[widget.data.length - 1].timestamp
+                      // DateTime.fromMillisecondsSinceEpoch(
+                      //     widget.data[widget.data.length - 1].timestamp)
                       : null,
                   visibleMinimum: widget.data.length > 15
-                      ?
-                      // widget.data[widget.data.length - 15].timestamp
-                      DateTime.fromMillisecondsSinceEpoch(
-                          widget.data[widget.data.length - 15].timestamp)
+                      ? widget.data[widget.data.length - 15].timestamp
+                      // DateTime.fromMillisecondsSinceEpoch(
+                      //     widget.data[widget.data.length - 15].timestamp)
                       : null,
 
                   labelIntersectAction: AxisLabelIntersectAction.multipleRows,
@@ -61,9 +59,9 @@ class _PowerChartState extends State<PowerChart> {
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
-                          // dataResult.timestamp,
-                          DateTime.fromMillisecondsSinceEpoch(
-                              dataResult.timestamp),
+                          dataResult.timestamp,
+                      // DateTime.fromMillisecondsSinceEpoch(
+                      //     dataResult.timestamp),
                       yValueMapper: (GetData dataResult, _) => dataResult.daya),
                   LineSeries<GetData, DateTime>(
                       markerSettings: const MarkerSettings(isVisible: true),
@@ -71,9 +69,9 @@ class _PowerChartState extends State<PowerChart> {
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
-                          // dataResult.timestamp,
-                          DateTime.fromMillisecondsSinceEpoch(
-                              dataResult.timestamp),
+                          dataResult.timestamp,
+                      // DateTime.fromMillisecondsSinceEpoch(
+                      //     dataResult.timestamp),
                       yValueMapper: (GetData dataResult, _) => dataResult.kwh),
                 ],
               ),

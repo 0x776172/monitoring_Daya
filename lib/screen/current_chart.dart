@@ -38,16 +38,14 @@ class _CurrentChartState extends State<CurrentChart> {
                   dateFormat: DateFormat('dd/MM/yy\nHH:mm'),
                   // maximumLabels: 5,
                   visibleMaximum: widget.data.length > 1
-                      ?
-                      // widget.data[widget.data.length - 1].timestamp
-                      DateTime.fromMillisecondsSinceEpoch(
-                          widget.data[widget.data.length - 1].timestamp)
+                      ? widget.data[widget.data.length - 1].timestamp
+                      // DateTime.fromMillisecondsSinceEpoch(
+                      //     widget.data[widget.data.length - 1].timestamp)
                       : null,
                   visibleMinimum: widget.data.length > 15
-                      ?
-                      // widget.data[widget.data.length - 15].timestamp
-                      DateTime.fromMillisecondsSinceEpoch(
-                          widget.data[widget.data.length - 15].timestamp)
+                      ? widget.data[widget.data.length - 15].timestamp
+                      // DateTime.fromMillisecondsSinceEpoch(
+                      //     widget.data[widget.data.length - 15].timestamp)
                       : null,
 
                   labelIntersectAction: AxisLabelIntersectAction.multipleRows,
@@ -60,9 +58,9 @@ class _CurrentChartState extends State<CurrentChart> {
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
-                          // dataResult.timestamp,
-                          DateTime.fromMillisecondsSinceEpoch(
-                              dataResult.timestamp),
+                          dataResult.timestamp,
+                      // DateTime.fromMillisecondsSinceEpoch(
+                      //     dataResult.timestamp),
                       yValueMapper: (GetData dataResult, _) =>
                           dataResult.arusR),
                   LineSeries<GetData, DateTime>(
@@ -71,9 +69,9 @@ class _CurrentChartState extends State<CurrentChart> {
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
-                          // dataResult.timestamp,
-                          DateTime.fromMillisecondsSinceEpoch(
-                              dataResult.timestamp),
+                          dataResult.timestamp,
+                      // DateTime.fromMillisecondsSinceEpoch(
+                      //     dataResult.timestamp),
                       yValueMapper: (GetData dataResult, _) =>
                           dataResult.arusS),
                   LineSeries<GetData, DateTime>(
@@ -82,9 +80,9 @@ class _CurrentChartState extends State<CurrentChart> {
                       // Bind data source
                       dataSource: widget.data,
                       xValueMapper: (GetData dataResult, _) =>
-                          // dataResult.timestamp,
-                          DateTime.fromMillisecondsSinceEpoch(
-                              dataResult.timestamp),
+                          dataResult.timestamp,
+                      // DateTime.fromMillisecondsSinceEpoch(
+                      //     dataResult.timestamp),
                       yValueMapper: (GetData dataResult, _) =>
                           dataResult.arusT),
                 ],
