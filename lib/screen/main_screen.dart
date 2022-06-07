@@ -47,22 +47,22 @@ class _MyHomePageState extends State<MyHomePage>
           var rawDate =
               DateTime.fromMillisecondsSinceEpoch(values['Timestamp']);
           // var dt = DateFormat.Hms().format(rawDate);
-          // print(rawDate);
+          print(rawDate);
           GetData result = GetData(
             id: snapshot.key!,
-            timestamp: rawDate,
+            timestamp: values['Timestamp'],
             //daya buat kwh dan kwh buat daya aktif, males ganti cuk
-            daya: values['kwh'],
-            kwh:
-                values['Daya'] != null ? values['Daya'] * 0.01 : values['Daya'],
-            tegR: values['teg'] != null ? values['teg'] * 0.1 : values['teg'],
+            daya: values['daya'],
+            kwh: values['kwh'] != null ? values['kwh'] * 0.01 : values['kwh'],
+            tegR:
+                values['tegR'] != null ? values['tegR'] * 0.1 : values['tegR'],
             tegS:
                 values['tegS'] != null ? values['tegS'] * 0.1 : values['tegS'],
             tegT:
                 values['tegT'] != null ? values['tegT'] * 0.1 : values['tegT'],
-            arusR: values['arus'] != null
-                ? values['arus'] * 0.001
-                : values['arus'],
+            arusR: values['arusR'] != null
+                ? values['arusR'] * 0.001
+                : values['arusR'],
             arusS: values['arusS'] != null
                 ? values['arusS'] * 0.001
                 : values['arusS'],
@@ -85,20 +85,22 @@ class _MyHomePageState extends State<MyHomePage>
               Map<String, dynamic>.from(jsonDecode(jsonEncode(snapshot.value)));
           var rawDate =
               DateTime.fromMillisecondsSinceEpoch(values['Timestamp']);
+          print(rawDate);
           // var dt = DateFormat.Hms().format(rawDate);
           GetData result = GetData(
             id: snapshot.key!,
-            timestamp: rawDate,
-            daya: values['Daya'],
+            timestamp: values['Timestamp'],
+            daya: values['daya'],
             kwh: values['kwh'] != null ? values['kwh'] * 0.01 : values['kwh'],
-            tegR: values['teg'] != null ? values['teg'] * 0.1 : values['teg'],
+            tegR:
+                values['tegR'] != null ? values['tegR'] * 0.1 : values['tegR'],
             tegS:
                 values['tegS'] != null ? values['tegS'] * 0.1 : values['tegS'],
             tegT:
                 values['tegT'] != null ? values['tegT'] * 0.1 : values['tegT'],
-            arusR: values['arus'] != null
-                ? values['arus'] * 0.001
-                : values['arus'],
+            arusR: values['arusR'] != null
+                ? values['arusR'] * 0.001
+                : values['arusR'],
             arusS: values['arusS'] != null
                 ? values['arusS'] * 0.001
                 : values['arusS'],
