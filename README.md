@@ -20,3 +20,5 @@ This Application made to fullfill my Final Project.
 In this Application, the monitored data will be displayed using charts. there are 3 datas, which is current, voltage, and power.
 
 This data taken from firebase. firebase receive data from ESP32.
+
+i'm using widget developed by syncfusion (www.syncfusion.com)
